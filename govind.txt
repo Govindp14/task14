@@ -1,0 +1,39 @@
+Task 13 – Cloud VM Setup and Connectivity Testing
+
+1. Provisioned a free VM using Google Cloud Platform (GCP):
+   - Logged into Google Cloud Console
+   - Opened "Compute Engine" → "VM Instances" → "Create"
+   - Selected Ubuntu Linux (free tier eligible)
+   - Machine type: e2-micro
+   - Username set as: govindp1418@task13
+   - Added SSH key for authentication
+   - Enabled firewall rules for SSH (22) and ICMP (ping)
+   - Launched the VM successfully
+
+2. Collected the assigned external IP from GCP Console:
+   Public IP: 34.131.141.34
+
+3. From Kali Linux host:
+   - Command used:
+     ping 34.131.141.34
+   - Verified connectivity with replies.
+   
+
+4. Remote access to VM via SSH:
+   - Command:
+     ssh govindp1418@34.131.141.34
+   - Successfully logged in.
+   - Checked network configuration using:
+     ip a
+
+5. From within the VM:
+   - Fetched its own public IP using:
+     curl ifconfig.me
+   - Tested ping to the public IP:
+     ping 34.131.141.34
+
+6. Briefly explored system and confirmed proper functionality.
+
+7. Cleanup:
+   - VM was stopped from the GCP Console
+   - Instance and associated resources were deleted to prevent charges
