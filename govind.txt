@@ -1,39 +1,40 @@
-Task 13 – Cloud VM Setup and Connectivity Testing
+Task 14 – Cloud Dweller Badge
+Name: Govind P
+Date: 13.09.2025
 
-1. Provisioned a free VM using Google Cloud Platform (GCP):
-   - Logged into Google Cloud Console
-   - Opened "Compute Engine" → "VM Instances" → "Create"
-   - Selected Ubuntu Linux (free tier eligible)
-   - Machine type: e2-micro
-   - Username set as: govindp1418@task13
-   - Added SSH key for authentication
-   - Enabled firewall rules for SSH (22) and ICMP (ping)
-   - Launched the VM successfully
+Steps Performed:
 
-2. Collected the assigned external IP from GCP Console:
-   Public IP: 34.131.141.34
-
-3. From Kali Linux host:
-   - Command used:
-     ping 34.131.141.34
-   - Verified connectivity with replies.
+1. Created a free VM in GCP with public IP 34.131.141.34 and internal IP 10.190.0.5.
+2. Connected to the VM from Kali Linux via SSH:
+   $ ssh govindp1418@34.131.141.34
+   - SSH connection successful 
+3. Installed required packages:
+   $ sudo apt update
+   $ sudo apt install apache2 php mysql-server nano -y
+4. Cloned GitHub repository from Task 12:
    
+5. Copied HTML files to the Apache web root:
+6. Started Apache server:
+  
+7. Configured MySQL:
+   $ sudo mysql -u root
+   > CREATE DATABASE cloudapp;
+   > CREATE USER 'clouduser'@'localhost' IDENTIFIED BY 'cloudpass';
+   > GRANT ALL PRIVILEGES ON cloudapp.* TO 'clouduser'@'localhost';
+   > FLUSH PRIVILEGES;
+   > USE cloudapp;
+   > CREATE TABLE users (
+         id INT AUTO_INCREMENT PRIMARY KEY,
+         username VARCHAR(50) NOT NULL UNIQUE,
+         password VARCHAR(255) NOT NULL
+     );
+   > INSERT INTO users (username, password) VALUES ('testuser', '$2y$10$u8a0V3x8qV8poVg1bG7i4eqXqqMsc0Z9TkpDZP6qCZP6/ZwHkz0he');
+   - MySQL database, table, and user created (screenshot taken)
+8. Created PHP files for user registration and login:
+   - /var/www/html/register.php
+   - /var/www/html/login.php
+   - Verified login page works: http://34.131.141.34/login.php 
+9. Verified that the web page is accessible publicly via IP 
+10. Documented the public IP: 34.131.141.34
+11. Uploaded all steps, screenshots, and IP to GitHub repository named task14.
 
-4. Remote access to VM via SSH:
-   - Command:
-     ssh govindp1418@34.131.141.34
-   - Successfully logged in.
-   - Checked network configuration using:
-     ip a
-
-5. From within the VM:
-   - Fetched its own public IP using:
-     curl ifconfig.me
-   - Tested ping to the public IP:
-     ping 34.131.141.34
-
-6. Briefly explored system and confirmed proper functionality.
-
-7. Cleanup:
-   - VM was stopped from the GCP Console
-   - Instance and associated resources were deleted to prevent charges
